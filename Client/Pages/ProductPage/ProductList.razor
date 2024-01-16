@@ -1,0 +1,52 @@
+﻿@page "/products"
+@inject HttpClient HttpClient
+@using FinalProject.Shared
+@inject NavigationManager nvm
+
+<h3>Product List</h3>
+
+@if (products != null)
+{
+    <table>
+        <tr>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var product in products)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price</td>
+                <td><img src="@($"data:image;base64,{Convert.ToBase64String(product.Image)}")" alt="@product.Name" height="100" width="100" /></td>
+                <td>
+                    <button @onclick="(() => EditProduct(product.Id))">Edit</button>
+                    <button @onclick="(() => DeleteProduct(product.Id))">Delete</button>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@code {
+    List<Product> products = new List<Product>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await HttpClient.GetFromJsonAsync<List<Product>>("api/products");
+    }
+
+    private void EditProduct(int productId)
+    {
+        nvm.NavigateTo($"/products/edit/{productId}");
+    }
+
+    private void DeleteProduct(int productId)
+    {
+        nvm.NavigateTo($"/products/delete/{productId}");
+    }
+}

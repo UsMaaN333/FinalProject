@@ -1,0 +1,44 @@
+﻿@inherits LayoutComponentBase
+@page "/contact"
+
+<div class="container mt-5 mb-5">
+        <div class="col-md-6 text-center mx-auto">
+            <h2 class="fw-bolder">About Us</h2>
+            <p>
+                Thank you for your interest in our company. Feel free to get in touch with us using the information below.
+            </p>
+
+            <p><strong>Company Information:</strong></p>
+            <address>
+                <strong>Company Name</strong><br />
+                123 Company St<br />
+                City, State 12345<br />
+                Email: info@company.com<br />
+                Phone: (123) 456-7890
+            </address>
+        </div>
+        <div class="col-md-6 mx-auto">
+            <h2 class="fw-bold lead text-center">Contact Us</h2>
+            <form class="border-2 px-4 py-4 bg-dark">
+                <div class="form-group">
+                    <label class="text-white" for="name">Your Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Your Name" required />
+                </div>
+                <div class="form-group">
+                <label class="text-white" for="email">Email Address:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Your Email" required />
+                </div>
+                <div class="form-group">
+                <label class="text-white" for="message">Message:</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+                </div>
+                <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success px-4 fw-bold">Submit</button>
+                </div>
+            </form>
+        </div>
+</div>
+
+
+
+

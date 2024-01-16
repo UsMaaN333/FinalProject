@@ -1,0 +1,59 @@
+﻿@page "/products"
+@using FinalProject.Client.Components
+@inject HttpClient HttpClient
+@using FinalProject.Shared
+@inject NavigationManager nvm
+
+<PageTitle>Products</PageTitle>
+
+<section>
+    <img src="img/product-banner.png" class="img-fluid"/>
+</section>
+
+<section class="mt-2 mb-4">
+    <div class="row row-cols-1 row-cols-md-2 g-4 my-2 mx-5">
+        @foreach (var product in products)
+        {
+            <div class="col-lg">
+                <span style="display:none;">@product.Id</span>
+                <div class="card h-100 w-100 shadow">
+                    <img src="@($"data:image;base64,{Convert.ToBase64String(product.Image)}")" class="card-img-top w-100" />
+                    <div Class="card-body">
+                        <div Class="card-title">@product.Name</div>
+                        <p class="card-text">@product.Description</p>
+                    </div>
+                    <div Class="card-footer">
+                        <div class="float-start">
+                            <h4>@product.Price</h4>
+                        </div>
+                        <div class="float-end">
+                            <button class="btn btn-primary rounded-3"><i class="bi bi-cart-fill"></i> Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+   </div>
+</section>
+
+
+
+@code {
+    List<Product> products = new List<Product>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await HttpClient.GetFromJsonAsync<List<Product>>("api/products");
+    }
+
+    private void EditProduct(int productId)
+    {
+        nvm.NavigateTo($"/products/edit/{productId}");
+    }
+
+    private void DeleteProduct(int productId)
+    {
+        nvm.NavigateTo($"/products/delete/{productId}");
+    }
+
+}

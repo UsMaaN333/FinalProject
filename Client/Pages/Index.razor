@@ -1,0 +1,32 @@
+﻿@page "/"
+@using FinalProject.Client.Components
+
+<PageTitle>Home</PageTitle>
+<style>
+    .banner {
+        text-align: center;
+        padding: 10px;
+    }
+
+        .banner img {
+            max-width: 100%;
+            height: auto;
+        }
+</style>
+
+<section class="mx-0">
+   <div class="container-fluid">
+        <!-- Banner Section -->
+        <div class="row">
+            <div class="col-12 banner">
+                <img src="img/banner1-min.png" alt="Website Banner">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-light row my-5">
+    <CardSection/>
+</section>
+<section class="row my-5">
+    <ServiceCard />
+</section>
